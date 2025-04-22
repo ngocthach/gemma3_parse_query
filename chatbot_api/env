@@ -1,0 +1,3 @@
+OPENAI_API_KEY='sk-proj-PjeaLYpapoe-KfoM7Hr-<your_api_key>'
+SEARCH_API_HOST='search-api'
+SEARCH_API_PORT='8085'

@@ -1,0 +1,4 @@
+ELASTICSEARCH_URL="http://elastic-search:9200"
+VAST_IP_ADDRESS=""
+VAST_PORT="8080"
+OPENAI_API_KEY='sk-proj---your-api-key'

@@ -1,0 +1,41 @@
+version: "3.7"
+
+networks:
+  internal-network:
+    name: internal-network
+    external: true
+
+services:
+  search-api:
+    build: .
+    hostname: search-api
+    container_name: search-api
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8085:8085"
+    networks:
+      - internal-network
+
+  elastic-search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    hostname: elastic-search
+    container_name: elastic-search
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - internal-network
+
+volumes:
+  es_data:
+    driver: local

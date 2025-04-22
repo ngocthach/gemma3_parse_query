@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  internal-network:
+    name: internal-network
+    external: true
+
+services:
+  chatbot-api:
+    build: .
+    hostname: chatbot-api
+    container_name: chatbot-api
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --workers 1 --log-level info
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8000:8000
+    networks:
+      - internal-network
+
